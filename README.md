@@ -2,6 +2,8 @@
 
 A lightweight, single-page web application built with pure HTML5, CSS3, and vanilla JavaScript. The application enables users to input URLs or plain text, dynamically generates an interactive QR code preview using QRCode.js via CDN, and allows exporting the result as a PNG image file.
 
+Hosted on **GitHub Pages**: [https://hitsgit0707.github.io/SL-Glob/](https://hitsgit0707.github.io/SL-Glob/)
+
 ---
 
 ## 🎯 Project Objectives
@@ -10,6 +12,7 @@ A lightweight, single-page web application built with pure HTML5, CSS3, and vani
 2. **Interactive DOM Manipulation**: Showcase clean event-driven programming, real-time DOM updates, dynamic state management, and user input validation.
 3. **Third-Party Library Integration**: Integrate an external JavaScript library (`QRCode.js`) via a CDN and handle canvas-to-image exports.
 4. **Responsive UI/UX**: Provide an accessible, mobile-friendly interface adhering to modern design principles.
+5. **Seamless Deployment**: Deploy the single-page application directly via GitHub Pages using the root directory.
 
 ---
 
@@ -42,42 +45,46 @@ A lightweight, single-page web application built with pure HTML5, CSS3, and vani
 
 ```
 SL-Glob/
-├── .gitignore
-├── README.md
+├── index.html       # Application markup and structure (GitHub Pages entry point)
+├── style.css        # Responsive styling and design system
+├── script.js        # Core JavaScript logic and event handlers
+├── .gitignore       # Git ignore rules
+├── README.md        # Main repository and deployment documentation
 └── qr-code-generator/
-    ├── index.html       # Application markup and structure
-    ├── style.css        # Responsive styling and design system
-    ├── script.js        # Core JavaScript logic and event handlers
-    ├── README.md        # Lab project documentation
-    └── .gitignore       # Frontend-specific ignores
+    └── README.md    # Lab project notes and module documentation
 ```
 
 ---
 
-## 🚀 Instructions to Run the Project
+## 🌐 GitHub Pages Deployment
+
+The application is deployed to GitHub Pages using the standard root publishing configuration:
+1. Go to repository **Settings** > **Pages**.
+2. Under **Build and deployment** > **Source**, choose **Deploy from a branch**.
+3. Select branch: `main` and folder: `/ (root)`.
+4. Click **Save**.
+5. The live site will be accessible at: `https://hitsgit0707.github.io/SL-Glob/`
+
+---
+
+## 🚀 Instructions to Run the Project Locally
 
 Since the project uses only client-side web technologies and a CDN-hosted library, no installation (`npm install`), compilers, or backend servers are required.
 
 ### Method 1: Direct File Opening
-1. Clone or download the repository:
+1. Clone the repository:
    ```bash
    git clone https://github.com/hitsgit0707/SL-Glob.git
    ```
-2. Navigate to the `qr-code-generator` directory:
-   ```bash
-   cd SL-Glob/qr-code-generator
-   ```
-3. Double-click `index.html` to open it in any modern web browser (Google Chrome, Microsoft Edge, Mozilla Firefox, Safari).
+2. Double-click `index.html` in the root folder to open it in any modern web browser (Google Chrome, Microsoft Edge, Mozilla Firefox, Safari).
 
 ### Method 2: Local Static Server (Optional)
-If you prefer running a local server:
-- **Python 3**:
-  ```bash
-  cd qr-code-generator
-  python -m http.server 8000
-  ```
-  Open `http://localhost:8000` in your browser.
-- **VS Code Live Server**: Right-click `index.html` and select **Open with Live Server**.
+Run a local static server using Python:
+```bash
+cd SL-Glob
+python -m http.server 8000
+```
+Open `http://localhost:8000` in your web browser.
 
 ---
 
@@ -100,7 +107,7 @@ new QRCode(qrPreviewElement, {
 });
 ```
 - **Target Container (`qrPreviewElement`)**: The DOM `<div>` where the library injects the output elements.
-- **Output Structure**: QRCode.js creates an HTML5 `<canvas>` element (and a fallback `<img>` element) representing the matrix modules.
+- **Output Structure**: QRCode.js creates an HTML5 `<canvas>` element (and fallback `<img>` element) representing the matrix modules.
 - **Error Correction (`QRCode.CorrectLevel.H`)**: Uses High (30%) Reed-Solomon error correction, ensuring high scan reliability even if partially obscured.
 
 ---
@@ -113,17 +120,3 @@ new QRCode(qrPreviewElement, {
 4. **HTML5 Canvas to Image Export**: Using `canvas.toDataURL("image/png")` to convert raw pixel data into a Base64-encoded Data URI for image download.
 5. **Dynamic Link Creation**: Programmatically generating and dispatching a click event on an in-memory `<a>` element with a `download` attribute to trigger browser file downloads.
 6. **State Synchronization**: Enabling/disabling buttons (`disabled = true/false`) and managing container contents (`innerHTML = ""`) based on application state.
-
----
-
-## 🧪 Testing Summary
-
-All verification tests were conducted on Microsoft Edge:
-- ✅ **Empty Input**: Correctly rejected with inline validation warning; download button remained disabled.
-- ✅ **URL Scans**: Verified generation of GitHub profile (`https://github.com/hitsgit0707`) and Google Forms URLs; scanned and decoded successfully back to the exact URL.
-- ✅ **Plain Text & Long Text**: Successfully encoded and decoded multi-sentence paragraphs.
-- ✅ **Image Download Verification**: Generated PNG files verified with valid PNG headers (`\x89PNG\r\n\x1a\n`) and readable 180x180 resolution.
-- ✅ **Consecutive Replacement**: Overwrote prior canvas elements without accumulation.
-- ✅ **Application Reset**: Cleared all inputs, errors, and previews; restored default placeholder.
-- ✅ **Mobile Responsiveness**: Viewports down to 375px verified with single-column button layout and fluid card scaling.
-- ✅ **Console Health**: 0 unhandled runtime errors or warnings.

@@ -7,6 +7,58 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <main class="app-container">
+        <!-- Header Section -->
+        <header class="app-header">
+            <h1 class="app-title">QR Code Generator</h1>
+            <p class="app-description">
+                Enter a URL or plain text below to generate, preview, and download your custom QR code.
+            </p>
+        </header>
+
+        <!-- QR Generator Card -->
+        <section class="card">
+            <!-- Input Area -->
+            <div class="form-group">
+                <label for="text-input" class="form-label">URL or Text</label>
+                <textarea 
+                    id="text-input" 
+                    class="form-control" 
+                    rows="3" 
+                    placeholder="e.g. https://example.com or any text here..."></textarea>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="button-group">
+                <button type="button" id="generate-btn" class="btn btn-primary">
+                    Generate QR Code
+                </button>
+                <button type="button" id="clear-btn" class="btn btn-secondary">
+                    Clear
+                </button>
+            </div>
+
+            <!-- QR Code Preview Area -->
+            <div class="preview-section">
+                <h2 class="section-heading">QR Code Preview</h2>
+                <div id="qr-preview" class="qr-preview-box">
+                    <p class="preview-placeholder">Your QR code will appear here</p>
+                </div>
+            </div>
+
+            <!-- Download Button -->
+            <div class="download-section">
+                <button type="button" id="download-btn" class="btn btn-success" disabled>
+                    Download PNG
+                </button>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p>Scripting Language Lab &bull; Minimalist QR Code Generator</p>
+        </footer>
+    </main>
 
     <script src="script.js"></script>
 </body>
